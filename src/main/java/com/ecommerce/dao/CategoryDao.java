@@ -16,7 +16,7 @@ public class CategoryDao {
     ResultSet resultSet = null;
 
     // Method to set amount of products for category.
-    private void queryCategoryProductAmount(Category category) {
+    private void queryCategoryProductAmount(Category category){
         int productId = category.getId();
         String query = "SELECT COUNT(*) FROM product WHERE fk_category_id = " + productId + " AND product_is_deleted = false";
         try {
@@ -27,7 +27,10 @@ public class CategoryDao {
             if (resultSet.next()) {
                 category.setTotalCategoryProduct(resultSet.getInt(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+            preparedStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (Exception e) {
             System.out.println("Get category products amount catch: ");
             System.out.println(e.getMessage());
         }
@@ -71,6 +74,9 @@ public class CategoryDao {
                 category.setName(resultSet.getString(2));
                 list.add(category);
             }
+            preparedStatement.close();
+            resultSet.close();
+            connection.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
