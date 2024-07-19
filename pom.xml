@@ -46,7 +46,14 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-<!--        <dependency>-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>8.5.31</version> <!-- Use the appropriate version for your setup -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        <dependency>-->
 <!--            <groupId>org.glassfish.web</groupId>-->
 <!--            <artifactId>jakarta.servlet.jsp.jstl</artifactId>-->
 <!--            <version>1.2.6</version>-->
