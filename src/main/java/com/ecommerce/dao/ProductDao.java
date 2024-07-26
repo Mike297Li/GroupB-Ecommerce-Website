@@ -12,7 +12,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-
 public class ProductDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -22,7 +21,10 @@ public class ProductDao {
     AccountDao accountDao = new AccountDao();
     CategoryDao categoryDao = new CategoryDao();
 
-    public static void main(String[] args) {
+    public ProductDao() throws SQLException {
+    }
+
+    public static void main(String[] args) throws SQLException {
         ProductDao productDao = new ProductDao();
         List<Product> list = productDao.getSellerProducts(1);
         for (Product product : list) {
@@ -49,8 +51,7 @@ public class ProductDao {
     private List<Product> getListProductQuery(String query) {
         List<Product> list = new ArrayList<>();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -58,8 +59,8 @@ public class ProductDao {
                 String name = resultSet.getString(2);
                 double price = resultSet.getDouble(4);
                 String description = resultSet.getString(5);
-                Category category = categoryDao.getCategory(resultSet.getInt(6));
-                Account account = accountDao.getAccount(resultSet.getInt(7));
+               // Category category = categoryDao.getCategory(resultSet.getInt(6));
+                //Account account = accountDao.getAccount(resultSet.getInt(7));
                 boolean isDelete = resultSet.getBoolean(8);
                 int amount = resultSet.getInt(9);
 
@@ -67,9 +68,9 @@ public class ProductDao {
                 Blob blob = resultSet.getBlob(3);
                 String base64Image = getBase64Image(blob);
 
-                list.add(new Product(id, name, base64Image, price, description, category, account, isDelete, amount));
+                list.add(new Product(id, name, base64Image, price, description, null, null, isDelete, amount));
             }
-        } catch (SQLException | ClassNotFoundException | IOException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
         }
         return list;
@@ -87,7 +88,7 @@ public class ProductDao {
         String query = "SELECT * FROM product WHERE product_id = " + productId;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -133,7 +134,7 @@ public class ProductDao {
         String query = "UPDATE product SET product_is_deleted = true WHERE product_id = " + productId;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
@@ -147,7 +148,7 @@ public class ProductDao {
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, productName);
             preparedStatement.setBinaryStream(2, productImage);
@@ -168,7 +169,7 @@ public class ProductDao {
         String query = "UPDATE product SET product_name = ?, product_image = ?, product_price = ?, product_description = ?, fk_category_id = ?, product_amount = ? WHERE product_id = ?";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, productName);
             preparedStatement.setBinaryStream(2, productImage);
@@ -195,7 +196,7 @@ public class ProductDao {
         String query = "SELECT COUNT(*) FROM product WHERE product_is_deleted = false";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -212,7 +213,7 @@ public class ProductDao {
         String query = "UPDATE product SET product_amount = product_amount - ? WHERE product_id = ?";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, productAmount);
             preparedStatement.setInt(2, productId);

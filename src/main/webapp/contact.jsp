@@ -11,7 +11,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Us - Shoppers</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,8 +68,7 @@
 <header>
     <h1>Shoppers</h1>
     <nav>
-        <a href="/" style="color: white; margin: 0 10px;">Home</a>
-        <a href="shop" style="color: white; margin: 0 10px;">Shop</a>
+        <a href="index.jsp" style="color: white; margin: 0 10px;">Home</a>
         <a href="about.jsp" style="color: white; margin: 0 10px;">About</a>
     </nav>
 </header>

@@ -11,28 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDao {
-    Connection connection = null;
+    Connection connection = Database.getConnection();;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+
+    public CategoryDao() throws SQLException {
+    }
 
     // Method to set amount of products for category.
     private void queryCategoryProductAmount(Category category){
         int productId = category.getId();
-        String query = "SELECT COUNT(*) FROM product WHERE fk_category_id = " + productId + " AND product_is_deleted = false";
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                category.setTotalCategoryProduct(resultSet.getInt(1));
+        String query = "SELECT COUNT(*) FROM product WHERE fk_category_id = ? AND product_is_deleted = false";
+        try (Connection connection = Database.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, productId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    category.setTotalCategoryProduct(resultSet.getInt(1));
+                }
             }
-            preparedStatement.close();
-            resultSet.close();
-            connection.close();
         } catch (Exception e) {
             System.out.println("Get category products amount catch: ");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -41,15 +42,13 @@ public class CategoryDao {
         Category category = new Category();
         String query = "SELECT * FROM category WHERE category_id = " + categoryId;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 category.setId(resultSet.getInt(1));
                 category.setName(resultSet.getString(2));
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
@@ -65,7 +64,7 @@ public class CategoryDao {
         String query = "SELECT * FROM category";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -76,7 +75,6 @@ public class CategoryDao {
             }
             preparedStatement.close();
             resultSet.close();
-            connection.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

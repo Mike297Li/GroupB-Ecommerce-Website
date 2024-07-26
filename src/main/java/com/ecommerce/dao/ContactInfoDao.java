@@ -1,11 +1,14 @@
 package com.ecommerce.dao;
 
+import com.ecommerce.database.Database;
 import com.ecommerce.entity.ContactInfo;
+import lombok.extern.slf4j.Slf4j;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+@Slf4j
 public class ContactInfoDao {
     private String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce";
     private String jdbcUsername = "root";
@@ -18,23 +21,22 @@ public class ContactInfoDao {
     protected Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException | ClassNotFoundException e) {
+            connection =  Database.getConnection();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return connection;
     }
 
     public void saveContactInfo(ContactInfo contactInfo) throws SQLException {
-        try (Connection connection = getConnection();
+        try (Connection connection =Database.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CONTACT_INFO_SQL)) {
             preparedStatement.setString(1, contactInfo.getName());
             preparedStatement.setString(2, contactInfo.getEmail());
             preparedStatement.setString(3, contactInfo.getMessage());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+           log.info(e.getMessage());
         }
     }
 }

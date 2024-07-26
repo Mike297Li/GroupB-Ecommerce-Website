@@ -33,8 +33,7 @@ public class AccountDao {
     private Account queryGetAccount(String query) {
         Account account = new Account();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -58,7 +57,7 @@ public class AccountDao {
 
                 return account;
             }
-        } catch (ClassNotFoundException | SQLException | IOException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -87,7 +86,7 @@ public class AccountDao {
         String query = "INSERT INTO account (account_name, account_password, account_image, account_is_seller, account_is_admin) VALUES (?, ?, ?, 0, 0)";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -110,7 +109,7 @@ public class AccountDao {
                 "WHERE account_id = ?";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -136,7 +135,7 @@ public class AccountDao {
                 "WHERE account_id = ?";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = new Database().getConnection();
+            connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);

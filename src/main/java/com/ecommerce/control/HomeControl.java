@@ -19,10 +19,14 @@ import java.util.List;
 
 @WebServlet(name = "HomeControl", urlPatterns = {"/", "/home", "/submitContact"})
 public class HomeControl extends HttpServlet {
-    // Call DAO class to access with database.
+
     ProductDao productDao = new ProductDao();
     CategoryDao categoryDao = new CategoryDao();
     ContactInfoDao contactInfoDao=new ContactInfoDao();
+
+    public HomeControl() throws SQLException {
+    }
+
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

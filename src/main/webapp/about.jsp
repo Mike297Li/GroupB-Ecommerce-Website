@@ -11,7 +11,6 @@
 <head>
     <meta charset="UTF-8">
     <title>About Us - Shoppers</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
