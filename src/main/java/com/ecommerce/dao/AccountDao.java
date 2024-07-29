@@ -108,7 +108,6 @@ public class AccountDao {
                 "account_image = ?" +
                 "WHERE account_id = ?";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
@@ -119,7 +118,7 @@ public class AccountDao {
             preparedStatement.setBinaryStream(6, image);
             preparedStatement.setInt(7, accountId);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Update profile catch: " + e.getMessage());
         }
     }
