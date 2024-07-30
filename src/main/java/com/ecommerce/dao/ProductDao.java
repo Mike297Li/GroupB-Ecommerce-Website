@@ -133,11 +133,10 @@ public class ProductDao {
 
         String query = "UPDATE product SET product_is_deleted = true WHERE product_id = " + productId;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -147,7 +146,6 @@ public class ProductDao {
         String query = "INSERT INTO product (product_name, product_image, product_price, product_description, fk_category_id, fk_account_id, product_is_deleted, product_amount) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, productName);
@@ -159,7 +157,7 @@ public class ProductDao {
             preparedStatement.setBoolean(7, false);
             preparedStatement.setInt(8, productAmount);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -168,7 +166,6 @@ public class ProductDao {
     public void editProduct(int productId, String productName, InputStream productImage, double productPrice, String productDescription, int productCategory, int productAmount) {
         String query = "UPDATE product SET product_name = ?, product_image = ?, product_price = ?, product_description = ?, fk_category_id = ?, product_amount = ? WHERE product_id = ?";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, productName);
@@ -179,7 +176,7 @@ public class ProductDao {
             preparedStatement.setInt(6, productId);
             preparedStatement.setInt(7, productAmount);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -195,14 +192,13 @@ public class ProductDao {
         int totalProduct = 0;
         String query = "SELECT COUNT(*) FROM product WHERE product_is_deleted = false";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 totalProduct = resultSet.getInt(1);
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return totalProduct;
@@ -212,13 +208,12 @@ public class ProductDao {
     public void decreaseProductAmount(int productId, int productAmount) {
         String query = "UPDATE product SET product_amount = product_amount - ? WHERE product_id = ?";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, productAmount);
             preparedStatement.setInt(2, productId);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

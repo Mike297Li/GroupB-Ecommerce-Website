@@ -19,7 +19,7 @@
                 <div class="col-md-6">
                     <h1 class="display-4 mb-4">Finding Your Perfect Shoes</h1>
                     <p class="lead mb-4">Explore our exclusive collection of shoes with free shipping and returns.</p>
-                    <a href="shop" class="btn btn-primary btn-lg">Shop Now</a>
+                    <a href="shop.jsp" class="btn btn-primary btn-lg">Shop Now</a>
                 </div>
             </div>
         </div>

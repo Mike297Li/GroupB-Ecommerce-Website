@@ -63,8 +63,6 @@ public class CategoryDao {
         List<Category> list = new ArrayList<>();
         String query = "SELECT * FROM category";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -75,7 +73,7 @@ public class CategoryDao {
             }
             preparedStatement.close();
             resultSet.close();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
