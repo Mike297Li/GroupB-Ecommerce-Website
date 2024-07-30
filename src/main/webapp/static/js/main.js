@@ -49,7 +49,10 @@ jQuery(document).ready(function ($) {
         // Clone navigation menu for mobile
         $('.js-clone-nav').each(function () {
             var $this = $(this);
-            $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+            var $clonedNav = $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+
+            // Ensure menu items are hidden by default
+            $clonedNav.find('.collapse').addClass('collapse').removeClass('show');
         });
 
         // Setup collapsible menu items
@@ -79,11 +82,16 @@ jQuery(document).ready(function ($) {
 
         $('body').on('click', '.arrow-collapse', function (e) {
             var $this = $(this);
-            if ($this.closest('li').find('.collapse').hasClass('show')) {
+            var $collapse = $this.closest('li').find('.collapse');
+
+            if ($collapse.hasClass('show')) {
+                $collapse.removeClass('show').addClass('collapse');
                 $this.removeClass('active');
             } else {
+                $collapse.removeClass('collapse').addClass('show');
                 $this.addClass('active');
             }
+
             e.preventDefault();
 
         });

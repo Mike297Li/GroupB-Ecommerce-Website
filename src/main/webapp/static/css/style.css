@@ -216,8 +216,11 @@ body {
   .site-menu {
     display: none;
   }
-
-  .site-mobile-menu {
+  .site-mobile-menu .collapse {
+    display: none;
+  }
+  .site-mobile-menu.offcanvas-menu .site-nav-wrap {
     display: block;
   }
 }
+
