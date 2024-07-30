@@ -13,7 +13,7 @@
 <div class="site-wrap">
     <jsp:include page="templates/header.jsp"/>
 
-    <div class="hero-section" style="background-image: url('/static/images/hero_1.jpg');">
+    <div class="hero-section" style="background-image: url('${pageContext.request.contextPath}/static/images/hero_1.jpg');">
         <div class="container">
             <div class="row align-items-center justify-content-center text-center text-md-left">
                 <div class="col-md-6">
