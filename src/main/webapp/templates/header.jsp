@@ -73,7 +73,7 @@
 
     <nav class="site-navigation text-right text-md-center" role="navigation">
         <div class="container">
-            <ul class="site-menu js-clone-nav d-none d-md-block" style="padding: 0">
+            <ul class="site-menu js-clone-nav d-none d-md-flex">
                 <li class="${home_active}"><a href="home">Home</a></li>
                 <li class="${about_active}"><a href="about.jsp">About</a></li>
                 <li class="${contact_active}"><a href="contact.jsp">Contact</a></li>

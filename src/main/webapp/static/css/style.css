@@ -78,3 +78,146 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+/* Header styling */
+.site-navbar {
+  background: #fff;
+  padding: 15px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.site-navbar .site-logo a {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.site-navbar .site-logo a:hover {
+  color: #007bff;
+}
+
+/* Icons */
+.site-navbar-top .site-top-icons {
+  flex: 1;
+  text-align: right;
+}
+
+.site-navbar-top .site-top-icons ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.site-navbar-top .site-top-icons li {
+  margin-left: 15px; /* Space between icons */
+  display: flex;
+  align-items: center;
+}
+
+/* Navigation menu */
+.site-navigation {
+  margin-top: 10px;
+}
+
+.site-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.site-menu li {
+  margin: 0 20px;
+}
+
+.site-menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  position: relative;
+}
+
+.site-menu li a:hover {
+  color: #007bff;
+}
+
+.site-menu li a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #007bff;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+.site-menu li a:hover::after {
+  width: 100%;
+}
+
+/* Mobile menu styling */
+.site-mobile-menu {
+  display: none;
+}
+
+.site-mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.site-mobile-menu-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.site-mobile-menu-close {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.site-mobile-menu-body {
+  background: #fff;
+}
+
+.site-mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-mobile-menu li {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.site-mobile-menu li a {
+  padding: 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.site-mobile-menu li a:hover {
+  background: #f4f4f4;
+}
+
+@media (max-width: 768px) {
+  .site-menu {
+    display: none;
+  }
+
+  .site-mobile-menu {
+    display: block;
+  }
+}
