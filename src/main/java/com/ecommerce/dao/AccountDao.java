@@ -85,14 +85,13 @@ public class AccountDao {
     public void createAccount(String username, String password, InputStream image) {
         String query = "INSERT INTO account (account_name, account_password, account_image, account_is_seller, account_is_admin) VALUES (?, ?, ?, 0, 0)";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             preparedStatement.setBinaryStream(3, image);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -133,7 +132,6 @@ public class AccountDao {
                 "account_phone = ? " +
                 "WHERE account_id = ?";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = Database.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
@@ -143,7 +141,7 @@ public class AccountDao {
             preparedStatement.setString(5, phone);
             preparedStatement.setInt(6, accountId);
             preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Update profile catch: " + e.getMessage());
         }
     }

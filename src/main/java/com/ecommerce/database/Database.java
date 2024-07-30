@@ -13,16 +13,18 @@ public class Database {
     private static HikariDataSource ds;
 
     static {
-        config.setJdbcUrl( "jdbc:mysql://localhost:3306/ecommerce" );
-        config.setUsername( "root" );
-        config.setPassword( "root" );
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/ecommerce");
+        config.setUsername("root" );
+        config.setPassword("root" );
         config.addDataSourceProperty( "cachePrepStmts" , "true" );
         config.addDataSourceProperty( "prepStmtCacheSize" , "250" );
         config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
-        config.setConnectionTimeout(30000);
-        config.setMaximumPoolSize(20);
+        config.setConnectionTimeout(300000);
+        config.setMaximumPoolSize(30);
+        config.setLeakDetectionThreshold(300000);
+        config.setIdleTimeout(120000);
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds = new HikariDataSource( config );
+        ds = new HikariDataSource(config );
     }
 
     private Database() {}
