@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <jsp:include page="templates/head.jsp"/>
-    <link rel="stylesheet" href="/test/static/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 
 <body>
