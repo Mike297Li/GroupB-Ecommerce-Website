@@ -47,8 +47,9 @@ public class CartControl extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+        String color = request.getParameter("color"); // Get the color value
 
         // Check if request is remove product from cart or not.
         if (request.getParameter("remove-product-id") != null) {
@@ -100,6 +101,7 @@ public class CartControl extends HttpServlet {
                     cartProduct.setQuantity(quantity);
                     cartProduct.setProduct(product);
                     cartProduct.setPrice(product.getPrice());
+                    cartProduct.setColor(color);
 
                     // Count the total price of the order.
                     totalPrice += product.getPrice() * quantity;
@@ -134,6 +136,7 @@ public class CartControl extends HttpServlet {
                         cartProduct.setQuantity(quantity);
                         cartProduct.setProduct(product);
                         cartProduct.setPrice(product.getPrice());
+                        cartProduct.setColor(color);
                         totalPrice += product.getPrice() * quantity;
                         list.add(cartProduct);
                     }

@@ -10,9 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 @Slf4j
 public class ContactInfoDao {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "root";
 
     private static final String INSERT_CONTACT_INFO_SQL = "INSERT INTO contact_info (name, email, message) VALUES (?, ?, ?)";
 

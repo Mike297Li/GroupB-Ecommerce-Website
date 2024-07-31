@@ -56,6 +56,16 @@
                             </div>
                         </div>
 
+                        <!-- Add color choices here -->
+                        <!-- Add color choices here as a dropdown list -->
+                        <div class="mb-3">
+                            <label for="color" class="form-label text-black">Choose a color:</label>
+                            <select id="color" name="color" class="form-control" style="max-width: 200px;">
+                                <option value="Red">Red</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Green">Green</option>
+                            </select>
+                        </div>
                         <p>
                             <button type="submit" class="buy-now btn btn-sm btn-primary" ${disabled}>
                                 Add To Cart

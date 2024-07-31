@@ -4,6 +4,7 @@ public class CartProduct {
     private Product product;
     private int quantity;
     private double price;
+    private String  color;
 
     public CartProduct() {
     }
@@ -38,12 +39,21 @@ public class CartProduct {
         this.price = price;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public String toString() {
         return "CartProduct{" +
-                ", product=" + product +
+                "product=" + product +
                 ", quantity=" + quantity +
                 ", price=" + price +
+                ", color='" + color + '\'' +
                 '}';
     }
 }
