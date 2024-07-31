@@ -26,6 +26,6 @@ public class LogoutControl extends HttpServlet {
             }
         }
 
-        response.sendRedirect("/");
+        response.sendRedirect("/test/home");
     }
 }
