@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-0">
-                    <a href="/">Home</a> <span class="mx-2 mb-0">/</span>
+                     <a href="<%= request.getContextPath() %>/index.jsp">Home</a> <span class="mx-2 mb-0">/</span>
                     <strong class="text-black">Profile</strong></div>
             </div>
         </div>
