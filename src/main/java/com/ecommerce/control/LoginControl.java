@@ -47,7 +47,7 @@ public class LoginControl extends HttpServlet {
             passwordCookie.setMaxAge(600);
             response.addCookie(passwordCookie);
         }
-        response.sendRedirect("/test/home");
+        response.sendRedirect(request.getContextPath() + "/home");
     }
 
     private void checkLoginAccountFirstTime(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

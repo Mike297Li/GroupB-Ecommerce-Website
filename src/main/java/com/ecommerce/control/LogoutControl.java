@@ -26,6 +26,7 @@ public class LogoutControl extends HttpServlet {
             }
         }
 
-        response.sendRedirect("/test/home");
+        // Redirect to home page using dynamic context path
+        response.sendRedirect(request.getContextPath() + "/home");
     }
 }
