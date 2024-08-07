@@ -1,4 +1,4 @@
-package com.ecommerce.database;
+package com.ecommerce.databaseUtils;
 
 
 import com.zaxxer.hikari.HikariConfig;

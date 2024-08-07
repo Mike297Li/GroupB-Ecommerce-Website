@@ -1,8 +1,8 @@
-package com.ecommerce.control;
+package com.ecommerce.controller;
 
 import com.ecommerce.dao.OrderDao;
-import com.ecommerce.entity.Account;
-import com.ecommerce.entity.Order;
+import com.ecommerce.model.Account;
+import com.ecommerce.model.Order;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

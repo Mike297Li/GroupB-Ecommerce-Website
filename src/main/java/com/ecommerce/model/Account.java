@@ -1,4 +1,4 @@
-package com.ecommerce.entity;
+package com.ecommerce.model;
 
 public class Account {
     private int id;

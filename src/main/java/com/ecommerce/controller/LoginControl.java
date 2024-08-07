@@ -1,7 +1,7 @@
-package com.ecommerce.control;
+package com.ecommerce.controller;
 
 import com.ecommerce.dao.AccountDao;
-import com.ecommerce.entity.Account;
+import com.ecommerce.model.Account;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package com.ecommerce.control;
+package com.ecommerce.controller;
 
 import com.ecommerce.dao.AccountDao;
 

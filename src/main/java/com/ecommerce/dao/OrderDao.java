@@ -1,9 +1,9 @@
 package com.ecommerce.dao;
 
-import com.ecommerce.database.Database;
-import com.ecommerce.entity.CartProduct;
-import com.ecommerce.entity.Order;
-import com.ecommerce.entity.Product;
+import com.ecommerce.databaseUtils.Database;
+import com.ecommerce.model.CartProduct;
+import com.ecommerce.model.Order;
+import com.ecommerce.model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;

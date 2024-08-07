@@ -1,9 +1,7 @@
 package com.ecommerce.dao;
 
-import com.ecommerce.database.Database;
-import com.ecommerce.entity.Account;
-import com.ecommerce.entity.Category;
-import com.ecommerce.entity.Product;
+import com.ecommerce.databaseUtils.Database;
+import com.ecommerce.model.Product;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

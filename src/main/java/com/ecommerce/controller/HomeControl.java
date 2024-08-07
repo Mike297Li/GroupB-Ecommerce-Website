@@ -1,11 +1,11 @@
-package com.ecommerce.control;
+package com.ecommerce.controller;
 
 import com.ecommerce.dao.CategoryDao;
 import com.ecommerce.dao.ContactInfoDao;
 import com.ecommerce.dao.ProductDao;
-import com.ecommerce.entity.Category;
-import com.ecommerce.entity.ContactInfo;
-import com.ecommerce.entity.Product;
+import com.ecommerce.model.Category;
+import com.ecommerce.model.ContactInfo;
+import com.ecommerce.model.Product;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

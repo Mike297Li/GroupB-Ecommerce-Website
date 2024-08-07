@@ -1,11 +1,10 @@
-package com.ecommerce.control;
+package com.ecommerce.controller;
 
 import com.ecommerce.dao.ProductDao;
-import com.ecommerce.entity.CartProduct;
-import com.ecommerce.entity.Order;
-import com.ecommerce.entity.Product;
+import com.ecommerce.model.CartProduct;
+import com.ecommerce.model.Order;
+import com.ecommerce.model.Product;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

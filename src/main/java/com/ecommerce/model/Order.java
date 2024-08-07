@@ -1,4 +1,4 @@
-package com.ecommerce.entity;
+package com.ecommerce.model;
 
 import java.util.Date;
 import java.util.List;
