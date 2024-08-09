@@ -11,70 +11,34 @@
 <head>
     <meta charset="UTF-8">
     <title>About Us - Shoppers</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        main {
-            background-color: white;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        p {
-            line-height: 1.6;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <jsp:include page="templates/head.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 <body>
-<header>
-    <h1>Shoppers</h1>
-    <nav>
-        <a href="index.jsp" style="color: white; margin: 0 10px;">Home</a>
-        <a href="contact.jsp" style="color: white; margin: 0 10px;">Contact</a>
-    </nav>
-</header>
+<div class="site-wrap">
+    <jsp:include page="templates/header.jsp"/>
 
-<div class="container">
-    <main>
-        <h1>About Us</h1>
-        <p>Welcome to Shoppers, your number one source for all things shoes, electronics, etc. We're dedicated to providing you the very best of products, with an emphasis on quality, customer service, and uniqueness.</p>
-        <p>Founded in 2024 by GroupB, Shoppers has come a long way from its beginnings in  Mississauga. When GroupB first started out, their passion for eco-friendly products drove them to start their own business.</p>
-        <p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
-        <p>Sincerely,<br>GroupB</p>
-    </main>
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href="${pageContext.request.contextPath}/home">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                        class="text-black">About</strong></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+            <h1>About Us</h1>
+            <br>
+            <p>Welcome to Shoppers, your number one source for all things shoes, electronics, etc. We're dedicated to providing you the very best of products, with an emphasis on quality, customer service, and uniqueness.</p>
+            <p>Founded in 2024 by GroupB, Shoppers has come a long way from its beginnings in  Mississauga. When GroupB first started out, their passion for eco-friendly products drove them to start their own business.</p>
+            <p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
+            <br>
+            <p>Sincerely,<br>GroupB</p>
+        </div>
+    </div>
+    <jsp:include page="templates/footer.jsp"/>
 </div>
-
-<footer>
-    <p>&copy; 2024 Shoppers. All rights reserved.</p>
-</footer>
 </body>
 </html>
 
