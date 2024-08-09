@@ -14,11 +14,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "orderDetailControl", value = "/order-detail")
-public class orderDetailControl extends HttpServlet {
+public class OrderDetailControl extends HttpServlet {
     // Call DAO class to access with database.
     OrderDao orderDao = new OrderDao();
 
-    public orderDetailControl() throws SQLException {
+    public OrderDetailControl() throws SQLException {
     }
 
     @Override
