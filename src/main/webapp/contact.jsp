@@ -8,32 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Contact Us - Shoppers</title>
+    <jsp:include page="templates/head.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
         main {
-            background-color: white;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
         }
         h1 {
             font-size: 2em;
@@ -64,16 +46,20 @@
         }
     </style>
 </head>
-<body>
-<header>
-    <h1>Shoppers</h1>
-    <nav>
-        <a href="index.jsp" style="color: white; margin: 0 10px;">Home</a>
-        <a href="about.jsp" style="color: white; margin: 0 10px;">About</a>
-    </nav>
-</header>
 
-<div class="container">
+<body>
+<div class="site-wrap">
+    <jsp:include page="templates/header.jsp"/>
+
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                        class="text-black">Contact Us</strong></div>
+            </div>
+        </div>
+    </div>
+
     <main>
         <h1>Contact Us</h1>
         <p>Have a question or feedback? Send us a message!</p>
@@ -94,10 +80,7 @@
             <p style="color: green;">${message}</p>
         </c:if>
     </main>
+    <jsp:include page="templates/footer.jsp"/>
 </div>
-
-<footer>
-    <p>&copy; 2024 Shoppers. All rights reserved.</p>
-</footer>
 </body>
 </html>
