@@ -38,7 +38,7 @@ public class ResetControl extends HttpServlet {
                     "                        </p>\n" +
                     "                    </div>";
             request.setAttribute("alert", alert);
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+            request.getRequestDispatcher("resetPw.jsp").forward(request, response);
         }
         // Check if username exists in the database
         else if (!accountDao.checkUsernameExists(username)) {
@@ -48,7 +48,7 @@ public class ResetControl extends HttpServlet {
                     "                        </p>\n" +
                     "                    </div>";
             request.setAttribute("alert", alert);
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+            request.getRequestDispatcher("resetPw.jsp").forward(request, response);
         }
         // Reset the password in the database
         else {
@@ -68,7 +68,7 @@ public class ResetControl extends HttpServlet {
                         "                        </p>\n" +
                         "                    </div>";
                 request.setAttribute("alert", alert);
-                request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+                request.getRequestDispatcher("resetPw.jsp").forward(request, response);
             }
         }
     }
