@@ -47,10 +47,13 @@ public class ProfileControl extends HttpServlet {
         }
 
         Part part = request.getPart("profile-image");
+        InputStream inputStream = null;
         if (part != null && part.getSize() > 0) { // Check if an image is uploaded
             String contentType = part.getContentType();
             if (!contentType.equals("image/jpeg") && !contentType.equals("image/png")) {
                 errorMessage = "Only JPG and PNG images are allowed.";
+            } else {
+                inputStream = part.getInputStream();
             }
         }
 
@@ -59,12 +62,14 @@ public class ProfileControl extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("profile-page.jsp");
             dispatcher.forward(request, response);
         } else {
-            // Proceed with updating the profile if validation passes
-            InputStream inputStream = (part != null && part.getSize() > 0) ? part.getInputStream() : null;
-
-            accountDao.editProfileInformation(accountId, firstName, lastName, address, email, phone, inputStream);
+            if (inputStream != null) {
+                accountDao.editProfileInformation(accountId, firstName, lastName, address, email, phone, inputStream);
+            } else {
+                accountDao.editProfileInformationWithoutImage(accountId, firstName, lastName, address, email, phone);
+            }
             response.sendRedirect("login");
         }
     }
+
 
 }
