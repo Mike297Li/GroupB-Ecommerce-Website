@@ -77,7 +77,10 @@
                 <li class="${home_active}"><a href="home">Home</a></li>
                 <li class="${about_active}"><a href="about.jsp">About</a></li>
                 <li class="${contact_active}"><a href="contact.jsp">Contact</a></li>
-                <li class="${contact_active}"><a href="login.jsp">Login</a></li>
+                <c:if test="${sessionScope.account == null}">
+                    <li class="${contact_active}"><a href="login.jsp">Login</a></li>
+                </c:if>
+
 
                 <c:if test="${sessionScope.account != null}">
                     <li class="${order_history_active}"><a href="order-history">Orders history</a></li>
