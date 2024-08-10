@@ -34,7 +34,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>Product ID</th>
+                                <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
                                 <th>Total</th>
@@ -43,7 +43,11 @@
                             <tbody>
                             <c:forEach items="${order_detail_list}" var="o">
                                 <tr>
-                                    <td>${o.product.id}</td>
+                                    <td>
+                                        <img src="data:image/jpg;base64,${o.product.base64Image}" alt="Image placeholder"
+                                             class="img-fluid" style="height: 20%; width: 20%;" >
+                                    </td>
+
 
                                     <td>${o.quantity}</td>
 
