@@ -82,17 +82,28 @@ public class AccountDao {
     }
 
     // Method to create an account.
-    public void createAccount(String username, String password, InputStream image) {
+    public void createAccount(String username, String password, InputStream image){
         String query = "INSERT INTO account (account_name, account_password, account_image, account_is_seller, account_is_admin) VALUES (?, ?, ?, 0, 0)";
         try {
             connection = Database.getConnection();
+            // Disable auto-commit
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             preparedStatement.setBinaryStream(3, image);
             preparedStatement.executeUpdate();
+            // Commit the transaction if all statements are successful
+            connection.commit();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback();  // Rollback the transaction in case of error
+                } catch (SQLException rollbackEx) {
+                    System.out.println("Rollback failed: " + rollbackEx.getMessage());
+                }
+            };
         }
     }
 
@@ -108,6 +119,8 @@ public class AccountDao {
                 "WHERE account_id = ?";
         try {
             connection = Database.getConnection();
+            // Disable auto-commit
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -117,8 +130,17 @@ public class AccountDao {
             preparedStatement.setBinaryStream(6, image);
             preparedStatement.setInt(7, accountId);
             preparedStatement.executeUpdate();
+            // Commit the transaction if all statements are successful
+            connection.commit();
         } catch (SQLException e) {
             System.out.println("Update profile catch: " + e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback();  // Rollback the transaction in case of error
+                } catch (SQLException rollbackEx) {
+                    System.out.println("Rollback failed: " + rollbackEx.getMessage());
+                }
+            };
         }
     }
 
@@ -133,6 +155,8 @@ public class AccountDao {
                 "WHERE account_id = ?";
         try {
             connection = Database.getConnection();
+            // Disable auto-commit
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -141,8 +165,17 @@ public class AccountDao {
             preparedStatement.setString(5, phone);
             preparedStatement.setInt(6, accountId);
             preparedStatement.executeUpdate();
+            // Commit the transaction if all statements are successful
+            connection.commit();
         } catch (SQLException e) {
             System.out.println("Update profile catch: " + e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback();  // Rollback the transaction in case of error
+                } catch (SQLException rollbackEx) {
+                    System.out.println("Rollback failed: " + rollbackEx.getMessage());
+                }
+            };
         }
     }
 }

@@ -207,12 +207,22 @@ public class ProductDao {
         String query = "UPDATE product SET product_amount = product_amount - ? WHERE product_id = ?";
         try {
             connection = Database.getConnection();
+            // Disable auto-commit
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, productAmount);
             preparedStatement.setInt(2, productId);
             preparedStatement.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback();  // Rollback the transaction in case of error
+                } catch (SQLException rollbackEx) {
+                    System.out.println("Rollback failed: " + rollbackEx.getMessage());
+                }
+            };
         }
     }
 }

@@ -20,7 +20,7 @@ public class Database {
         config.addDataSourceProperty( "prepStmtCacheSize" , "250" );
         config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
         config.setConnectionTimeout(300000);
-        config.setMaximumPoolSize(30);
+        config.setMaximumPoolSize(50);
         config.setLeakDetectionThreshold(300000);
         config.setIdleTimeout(120000);
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
