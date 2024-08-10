@@ -145,4 +145,40 @@ public class AccountDao {
             System.out.println("Update profile catch: " + e.getMessage());
         }
     }
+
+    // Method to edit profile information without changing the profile image.
+    public void editProfileInformationWithoutImage(int accountId, String firstName, String lastName, String address, String email, String phone) {
+        String query = "UPDATE account SET " +
+                "account_first_name = ?, " +
+                "account_last_name = ?, " +
+                "account_address = ?, " +
+                "account_email = ?, " +
+                "account_phone = ? " +
+                "WHERE account_id = ?";
+        try {
+            connection = Database.getConnection();
+            // Disable auto-commit
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, phone);
+            preparedStatement.setInt(6, accountId);
+            preparedStatement.executeUpdate();
+            // Commit the transaction if all statements are successful
+            connection.commit();
+        } catch (SQLException e) {
+            System.out.println("Update profile without image catch: " + e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback();  // Rollback the transaction in case of error
+                } catch (SQLException rollbackEx) {
+                    System.out.println("Rollback failed: " + rollbackEx.getMessage());
+                }
+            }
+        }
+    }
+
 }
