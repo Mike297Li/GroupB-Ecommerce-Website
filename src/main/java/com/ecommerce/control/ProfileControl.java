@@ -29,19 +29,42 @@ public class ProfileControl extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
 
         int accountId = account.getId();
-        String firstName = request.getParameter("first-name");
-        String lastName = request.getParameter("last-name");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
+        String firstName = request.getParameter("first-name").trim();
+        String lastName = request.getParameter("last-name").trim(); // Last name is optional
+        String address = request.getParameter("address").trim();    // Address is compulsory
+        String email = request.getParameter("email").trim();
+        String phone = request.getParameter("phone").trim();
 
-        // Set default profile image for account.
+        String errorMessage = null;
+
+        // Basic validation for required fields
+        if (firstName.isEmpty() || address.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+            errorMessage = "First name, address, email, and phone number are required.";
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            errorMessage = "Please enter a valid email address.";
+        } else if (!phone.matches("\\d{10}")) {
+            errorMessage = "Please enter a valid 10-digit phone number.";
+        }
+
         Part part = request.getPart("profile-image");
-        InputStream inputStream = part.getInputStream();
+        if (part != null && part.getSize() > 0) { // Check if an image is uploaded
+            String contentType = part.getContentType();
+            if (!contentType.equals("image/jpeg") && !contentType.equals("image/png")) {
+                errorMessage = "Only JPG and PNG images are allowed.";
+            }
+        }
 
-        System.out.println(accountId + " " + firstName + " " + lastName + " " + address + " " + email + " " + phone);
+        if (errorMessage != null) {
+            request.setAttribute("errorMessage", errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("profile-page.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            // Proceed with updating the profile if validation passes
+            InputStream inputStream = (part != null && part.getSize() > 0) ? part.getInputStream() : null;
 
-        accountDao.editProfileInformation(accountId, firstName, lastName, address, email, phone, inputStream);
-        response.sendRedirect("login");
+            accountDao.editProfileInformation(accountId, firstName, lastName, address, email, phone, inputStream);
+            response.sendRedirect("login");
+        }
     }
+
 }

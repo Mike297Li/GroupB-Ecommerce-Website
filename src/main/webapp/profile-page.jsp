@@ -4,8 +4,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="templates/head.jsp"/>
-
+<head>
+    <jsp:include page="templates/head.jsp"/>
+    <style>
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
 <body>
 <div class="site-wrap">
     <jsp:include page="templates/header.jsp"/>
@@ -61,6 +69,13 @@
                     <h2 class="h3 mb-3 text-black">Profile Information</h2>
 
                     <div class="p-3 p-lg-5 border">
+                        <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+                        <% if (errorMessage != null) { %>
+                        <div class="error-message">
+                            <%= errorMessage %>
+                        </div>
+                        <% } %>
+
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="first-name" class="text-black">
@@ -73,7 +88,7 @@
 
                             <div class="col-md-6">
                                 <label for="last-name" class="text-black">
-                                    Last Name <span class="text-danger">*</span>
+                                    Last Name
                                 </label>
 
                                 <input type="text" class="form-control" id="last-name" name="last-name"
